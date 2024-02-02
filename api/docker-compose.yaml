@@ -9,12 +9,22 @@ services:
       - MYSQL_DATABASE=tlc
       - MYSQL_USER=tlc
       - MYSQL_PASSWORD=tlc
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 2
   etherpad:
     image: etherpad/etherpad
     ports:
       - "9001:9001"
     volumes:
       - ./APIKEY.txt:/opt/etherpad-lite/APIKEY.txt
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f localhost:9001/health || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
   mail:
     image: bytemark/smtp
     restart: always
@@ -25,3 +35,11 @@ services:
     build: "."
     ports:
       - "8080:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+      etherpad:
+        condition: service_healthy
+    links:
+      - db
+      - etherpad
