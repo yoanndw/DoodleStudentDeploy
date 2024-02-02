@@ -1,4 +1,5 @@
 version: "3.8"
+
 services:
   db:
     image: mysql
@@ -19,7 +20,7 @@ services:
     ports:
       - "9001:9001"
     volumes:
-      - ./APIKEY.txt:/opt/etherpad-lite/APIKEY.txt
+      - ./api/APIKEY.txt:/opt/etherpad-lite/APIKEY.txt
     healthcheck:
       test: "wget 0.0.0.0:9001/health --spider -q"
       interval: 10s
@@ -35,6 +36,11 @@ services:
     build: "."
     ports:
       - "8080:8080"
+    healthcheck:
+      test: "wget 0.0.0.0:8080 --spider -q"
+      interval: 10s
+      timeout: 10s
+      retries: 10
     depends_on:
       db:
         condition: service_healthy
@@ -43,3 +49,12 @@ services:
     links:
       - db
       - etherpad
+
+  frontend:
+    image: front
+    build: "."
+    ports:
+      - "4200:80"
+    depends_on:
+      rest-api:
+        condition: service_healthy
