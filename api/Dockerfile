@@ -11,14 +11,12 @@ ADD .mvn /app/.mvn
 # ADD APIKEY.txt /app/APIKEY.txt
 
 WORKDIR /app
-RUN mvn clean package -Dquarkus.package.type=uber-jar
+RUN mvn clean package -Pnative -Dquarkus.native.container-build=true
 
 # Running jar
 FROM alpine
 
-RUN apk add openjdk17
-
 COPY --from=builder /app/target /app/target
 
 WORKDIR /app
-CMD java -jar target/tlcdemoApp-1.0.0-SNAPSHOT-runner.jar
+CMD ./target/tlcdemoApp-1.0.0-SNAPSHOT-runner
