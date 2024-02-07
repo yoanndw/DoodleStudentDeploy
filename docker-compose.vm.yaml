@@ -20,7 +20,7 @@ services:
     ports:
       - "9001:9001"
     volumes:
-      - ./api/APIKEY.txt:/opt/etherpad-lite/APIKEY.txt
+      - ./APIKEY.txt:/opt/etherpad-lite/APIKEY.txt
     healthcheck:
       test: "wget 0.0.0.0:9001/health --spider -q"
       interval: 10s
