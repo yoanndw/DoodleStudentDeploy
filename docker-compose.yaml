@@ -11,7 +11,7 @@ services:
       - MYSQL_USER=tlc
       - MYSQL_PASSWORD=tlc
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       interval: 30s
       timeout: 10s
       retries: 2
@@ -50,6 +50,14 @@ services:
     links:
       - db
       - etherpad
+  myadmin:
+    image: phpmyadmin:latest
+    ports:
+      - "80:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: always
 
   frontend:
     image: front
