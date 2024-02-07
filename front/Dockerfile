@@ -13,8 +13,8 @@ FROM nginx as prod
 
 # ADD nginx.conf /etc/nginx/
 
-# ADD admin.conf /etc/nginx/conf.d/
-# ADD pad.conf /etc/nginx/conf.d/
+ADD admin.conf /etc/nginx/conf.d/
+ADD pad.conf /etc/nginx/conf.d/
 ADD front.conf /etc/nginx/conf.d/
 
 RUN rm -rf /etc/nginx/conf.d/default.conf
