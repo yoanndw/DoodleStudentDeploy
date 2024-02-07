@@ -31,9 +31,10 @@ services:
     restart: always
     ports:
       - "2525:25"
-  rest-api:
-    image: rest
-    build: "."
+  api:
+    image: api
+    build: "./api"
+    restart: always
     ports:
       - "8080:8080"
     healthcheck:
@@ -52,9 +53,9 @@ services:
 
   frontend:
     image: front
-    build: "."
+    build: "./front"
     ports:
       - "4200:80"
     depends_on:
-      rest-api:
+      api:
         condition: service_healthy
