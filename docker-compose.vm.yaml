@@ -49,10 +49,9 @@ services:
     links:
       - db
       - etherpad
+      - mail
   myadmin:
     image: phpmyadmin:latest
-    ports:
-      - "80:8080"
     depends_on:
       db:
         condition: service_healthy
@@ -61,7 +60,7 @@ services:
   frontend:
     image: iziny/doodlefront
     ports:
-      - "4200:80"
+      - "80:80"
     depends_on:
       api:
         condition: service_healthy
