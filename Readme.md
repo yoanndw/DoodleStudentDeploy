@@ -1,15 +1,30 @@
-# Remote meetings planning
+# Projet TLC
 
-This project is used in a course on the *ops* part at the [University of Rennes](https://www.univ-rennes1.fr/), France. It is a kind of doodle clone developed in so-called "native cloud" technologies in order to allow students to work on a continuous deployment chain in a containerized environment. Among the feature, the application automatically initializes a pad for the meeting and a chat room for the meeting participants.
+Yoann DEWILDE
 
-- The [back](https://github.com/barais/doodlestudent/tree/main/api) is developed using the [quarkus.io](https://quarkus.io/) framework. 
-- The [front](https://github.com/barais/doodlestudent/tree/main/front) is developed in [angular](https://angular.io/) using the [primeng](https://www.primefaces.org/primeng/)  angular UI component library and the [fullcalendar](https://fullcalendar.io/) graphical component.
+Ce projet est le déploiement de l'application Doodle sur une machine virtuelle.
 
-A demo of the application is available [here](https://doodle.diverse-team.fr/).
+# Installation sur VM
 
-Three videos (in french) are available. They present:
-- the [main application feature](https://drive.google.com/file/d/1GQbdgq2CHcddTlcoHqM5Zc8Dw5o_eeLg/preview), 
-- its [architecture](https://drive.google.com/file/d/1l5UAsU5_q-oshwEW6edZ4UvQjN3-tzwi/preview) 
-- and a [short code review](https://drive.google.com/file/d/1jxYNfJdtd4r_pDbOthra360ei8Z17tX_/preview) .
+Avec `deploy.sh` 
+- Modifier la variable `vm` dans le script et y assigner le domaine ou l'IP de la VM.
+- Exécuter le script. Le mot de passe est demandé plusieurs fois, pour chaque fichier, c'est normal.
 
-For french native speaker that wants to follow the course. The course web page is available [here](https://hackmd.diverse-team.fr/s/SJqu5DjSD).
+Manuellement :
+- Créer le dossier `~/doodle` sur la VM.
+- Copier les fichiers suivants à la racine de `~/doodle` :
+  - front/admin.conf
+  - front/api.conf
+  - front/pad.conf
+  - docker-compose.vm.yaml
+  - api/APIKEY.txt
+
+# Exécution
+
+- Se connecter à la VM.
+- Exécuter ces commandes :
+
+```bash
+cd ~/doodle
+docker compose -f docker-compose.vm.yaml up 
+```
