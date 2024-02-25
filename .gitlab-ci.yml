@@ -6,8 +6,7 @@ default:
     - docker info
 
 variables:
-  DOCKER_HOST: "tcp://docker:2375"
-  DOCKER_TLS_CERTDIR: ""
+  DOCKER_TLS_CERTDIR: "/certs"
 
 build-api:
   stage: build
