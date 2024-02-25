@@ -2,13 +2,14 @@ build-api:
   stage: build
   script:
     - cd api
-    - pwd
+    - echo $DOCKER_PASSWORD # | docker login --username ydewilde --password-stdin
+    # - docker build . -t ydewilde/doodleapi
 
-build-front:
-  stage: build
-  script:
-    - cd front
-    - pwd
+# build-front:
+#   stage: build
+#   script:
+#     - cd front
+#     - docker build . -t ydewilde/doodlefront 
 
 # deploy-prod:
 #   stage: deploy
