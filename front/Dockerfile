@@ -13,8 +13,4 @@ FROM nginx as prod
 
 RUN rm -rf /etc/nginx/conf.d/default.conf
 
-ADD admin.conf /etc/nginx/conf.d/
-ADD pad.conf /etc/nginx/conf.d/
-ADD front.conf /etc/nginx/conf.d/
-
 COPY --from=builder /app/dist/tlcfront /usr/share/nginx/html
