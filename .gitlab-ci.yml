@@ -14,13 +14,15 @@ build-api:
     - cd api
     - echo $DOCKER_PASSWORD | docker login --username ydewilde --password-stdin
     - docker build . -t ydewilde/doodleapi
+    - docker image push ydewilde/doodleapi
 
-# build-front:
-#   stage: build
-#   script:
-#     - cd front
-#     - echo $DOCKER_PASSWORD | docker login --username ydewilde --password-stdin
-#     - docker build . -t ydewilde/doodlefront 
+build-front:
+  stage: build
+  script:
+    - cd front
+    - echo $DOCKER_PASSWORD | docker login --username ydewilde --password-stdin
+    - docker build . -t ydewilde/doodlefront 
+    - docker image push ydewilde/doodlefront
 
 # deploy-prod:
 #   stage: deploy
