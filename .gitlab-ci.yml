@@ -1,20 +1,26 @@
 default:
+  image: docker:24.0.5
+  services:
+    - docker:24.0.5-dind
   before_script:
     - docker info
 
-build-api:
-  stage: build
-  script:
-    - cd api
-    - echo $DOCKER_PASSWORD | docker login --username ydewilde --password-stdin
-    - docker build . -t ydewilde/doodleapi
+variables:
+  DOCKER_TLS_CERTDIR: "/certs"
 
-build-front:
-  stage: build
-  script:
-    - cd front
-    - echo $DOCKER_PASSWORD | docker login --username ydewilde --password-stdin
-    - docker build . -t ydewilde/doodlefront 
+# build-api:
+#   stage: build
+#   script:
+#     - cd api
+#     - echo $DOCKER_PASSWORD | docker login --username ydewilde --password-stdin
+#     - docker build . -t ydewilde/doodleapi
+
+# build-front:
+#   stage: build
+#   script:
+#     - cd front
+#     - echo $DOCKER_PASSWORD | docker login --username ydewilde --password-stdin
+#     - docker build . -t ydewilde/doodlefront 
 
 # deploy-prod:
 #   stage: deploy
