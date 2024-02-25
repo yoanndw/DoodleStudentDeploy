@@ -8,12 +8,12 @@ default:
 variables:
   DOCKER_TLS_CERTDIR: "/certs"
 
-# build-api:
-#   stage: build
-#   script:
-#     - cd api
-#     - echo $DOCKER_PASSWORD | docker login --username ydewilde --password-stdin
-#     - docker build . -t ydewilde/doodleapi
+build-api:
+  stage: build
+  script:
+    - cd api
+    - echo $DOCKER_PASSWORD | docker login --username ydewilde --password-stdin
+    - docker build . -t ydewilde/doodleapi
 
 # build-front:
 #   stage: build
