@@ -4,6 +4,11 @@ build-api:
     - cd api
     - pwd
 
+build-front:
+  stage: build
+  script:
+    - cd front
+    - pwd
 
 # deploy-prod:
 #   stage: deploy
