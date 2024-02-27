@@ -6,7 +6,8 @@ RUN mkdir /app \
 ADD . /app
 
 WORKDIR /app
-RUN npm run build
+RUN npm i \
+    && npm run build
 
 # Run the app
 FROM nginx as prod
