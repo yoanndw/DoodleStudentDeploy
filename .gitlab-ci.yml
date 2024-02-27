@@ -6,7 +6,7 @@ default:
     - docker info
 
 variables:
-  DOCKER_TLS_CERTDIR: "/certs"
+  DOCKER_TLS_CERTDIR: ""
 
 build-api:
   stage: build
