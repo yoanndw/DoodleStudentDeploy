@@ -26,3 +26,10 @@ Manuellement :
 cd ~/doodle
 docker compose -f docker-compose.yaml up 
 ```
+
+# Intégration continue
+
+GitLab CI/CD a été mis en place. A chaque commit sur main :
+- Les images sont construites et poussées sur Docker Hub.
+- Les fichiers de configuration et docker-compose sont envoyés vers `ydew.istic.univ-rennes1.fr`.
+- L'application est lancée en tâche de fond.
