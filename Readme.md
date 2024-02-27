@@ -12,11 +12,9 @@ Avec `deploy.sh`
 
 Manuellement :
 - Créer le dossier `~/doodle` sur la VM.
-- Copier les fichiers suivants à la racine de `~/doodle` :
-  - front/admin.conf
-  - front/api.conf
-  - front/pad.conf
-  - docker-compose.vm.yaml
+- Copier le dossier `nginx` dans `~/doodle`.
+- Copier les fichiers suivants *à la racine* de `~/doodle` :
+  - docker-compose.yaml
   - api/APIKEY.txt
 
 # Exécution
@@ -26,5 +24,5 @@ Manuellement :
 
 ```bash
 cd ~/doodle
-docker compose -f docker-compose.vm.yaml up 
+docker compose -f docker-compose.yaml up 
 ```
