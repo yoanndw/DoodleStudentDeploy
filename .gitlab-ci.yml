@@ -4,6 +4,12 @@ default:
     - docker:24.0.5-dind
   before_script:
     - docker info
+    - command -v ssh-agent >/dev/null || ( apt-get update -y && apt-get install openssh-client -y )
+    - eval $(ssh-agent -s)
+    - chmod 400 $PRIVATE_KEY
+    - ssh-add $PRIVATE_KEY
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
 
 variables:
   DOCKER_TLS_CERTDIR: ""
