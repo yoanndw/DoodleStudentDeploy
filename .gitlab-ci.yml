@@ -37,5 +37,5 @@ deploy-prod:
     - scp -o StrictHostKeyChecking=no -i $PRIVATE_KEY -r nginx zprojet@ydew.istic.univ-rennes1.fr:~/doodle
     - scp -o StrictHostKeyChecking=no -i $PRIVATE_KEY docker-compose.yaml zprojet@ydew.istic.univ-rennes1.fr:~/doodle
     - scp -o StrictHostKeyChecking=no -i $PRIVATE_KEY api/APIKEY.txt zprojet@ydew.istic.univ-rennes1.fr:~/doodle
-    - ssh -i $PRIVATE_KEY zprojet@ydew.istic.univ-rennes1.fr "cd ~/doodle && docker compose up" 
+    - ssh -i $PRIVATE_KEY zprojet@ydew.istic.univ-rennes1.fr "cd ~/doodle && docker compose up -d" 
   environment: production
