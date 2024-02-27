@@ -33,7 +33,7 @@ build-front:
 deploy-prod:
   stage: deploy
   script:
-    - ssh -o StrictHostKeyChecking=no -i $PRIVATE_KEY zprojet@ydew.istic.univ-rennes1.fr "rm -rf ~/doodle ; mkdir ~/doodle"
+    - ssh -o StrictHostKeyChecking=no -i $PRIVATE_KEY zprojet@ydew.istic.univ-rennes1.fr "rm -rf ~/doodle && mkdir ~/doodle"
     - scp -o StrictHostKeyChecking=no -i $PRIVATE_KEY -r nginx zprojet@ydew.istic.univ-rennes1.fr:~/doodle
     - scp -o StrictHostKeyChecking=no -i $PRIVATE_KEY docker-compose.yaml zprojet@ydew.istic.univ-rennes1.fr:~/doodle
     - scp -o StrictHostKeyChecking=no -i $PRIVATE_KEY api/APIKEY.txt zprojet@ydew.istic.univ-rennes1.fr:~/doodle
