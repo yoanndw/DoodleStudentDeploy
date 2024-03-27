@@ -54,7 +54,13 @@ GitLab CI/CD a été mis en place. A chaque commit sur main :
 - Les fichiers de configuration et docker-compose sont envoyés vers `ydew.istic.univ-rennes1.fr`.
 - L'application est lancée en tâche de fond.
 
-# Utilisation de letsencrypt
+# Problèmes rencontrés
+
+## Accès au site
+
+L'adresse http://ydew.diverse-team.fr mène à la page phpMyAdmin. Tandis que les adresses http://doodle.ydew.diverse-team.fr, http://admin.ydew.diverse-team.fr et http://pad.ydew.diverse-team.fr renvoient une erreur DNS_PROBE_FINISHED_NXDOMAIN.
+
+## Utilisation de letsencrypt
 
 Je n'ai pas réussi à faire fonctionner letsencrypt. Voici la commande exécutée pour générer les certificats :
 
