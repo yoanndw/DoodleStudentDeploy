@@ -32,7 +32,7 @@ services:
     ports:
       - "2525:25"
   api:
-    image: iziny/doodleapi
+    image: ydewilde/doodleapi
     restart: always
     ports:
       - "8080:8080"
@@ -58,18 +58,18 @@ services:
     restart: always
 
   frontend:
-    image: iziny/doodlefront
+    image: ydewilde/doodlefront
     ports:
       - "80:80"
     volumes:
       - ./nginx/:/etc/nginx/conf.d/
-      # - ./certbot/www/:/var/www/certbot/ # the second path is the webroot
+      - ./certbot/www/:/var/www/certbot/ # the second path is the webroot
     depends_on:
       api:
         condition: service_healthy
 
-  # letsencrypt:
-  #   image: certbot/certbot:latest
-  #   volumes:
-  #     - ./certbot/www/:/var/www/certbot/
-  #     - ./certbot/conf/:/etc/letsencrypt/
+  letsencrypt:
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/
+      - ./certbot/conf/:/etc/letsencrypt/
